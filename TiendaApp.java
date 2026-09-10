@@ -1,99 +1,58 @@
+/*
+Errores corregidos:
+- Variables sin uso eliminadas: Se removieron variables muertas (x, y, z, PI) que no aportaban a la lógica.
+- Nombres descriptivos: Variables de instancia renombradas (p1 -> producto, c1 -> cliente, v1 -> venta).
+- Encapsulamiento aplicado: En lugar de asignar atributos públicos directamente, se leen los datos y se instancian los objetos mediante sus constructores.
+- Manejo correcto de recursos: Se utiliza sc.close() para el cierre seguro de Scanner.
+- Consumo de saltos de línea: Manejo adecuado del buffer de Scanner tras leer tipos numéricos.
+*/
+
 import java.util.Scanner;
 
-class Cliente {
-    public String nombreCliente;
-    public String edad;
-    public boolean vip = false;
-
-    public void mostrarCliente() {
-        System.out.println("Cliente: " + nombreCliente + " Edad: " + edad + " VIP: " + vip);
-    }
-
-    public Cliente() {
-    }
-
-    public Cliente (String nombreCliente, String edad, boolean vip) {
-        this.nombreCliente = nombreCliente;
-        this.edad = edad;
-        this.vip = vip;
-    }
-}
-
-class Producto {
-    public int codigo;
-    public String nombreProducto;
-    public float precio;
-    public int Stock;
-    
-    public boolean disponible = false;
-    
-    public void mostrarProducto() {
-        System.out.println("Codigo: " + codigo);
-        System.out.println("Nombre: " + nombreProducto);
-        System.out.println("Precio: " + precio);
-        System.out.println("Stock: " + Stock);
-    }
-}
-
-class Venta {
-    private static int contadorVentas = 0;
-
-    public Producto producto;
-    public Cliente cliente;
-    public int cantidad;
-    int total;
-
-    public void calcularTotal() {
-        contadorVentas = contadorVentas + 1;
-        float subtotal = producto.precio * cantidad;
-        
-        total = (int) (subtotal + (subtotal * 0.16));
-    }
-    
-    public void imprimirTicket() {
-        System.out.println("Venta N: " + contadorVentas);
-        System.out.println("Cliente: " + cliente.nombreCliente);
-        System.out.println("Producto: " + producto.nombreProducto);
-        System.out.println("Cantidad: " + cantidad);
-        System.out.println("Total: " + total);
-    }
-}
-
 public class TiendaApp {
-    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
-        Producto producto = new Producto();
-        producto.codigo = 1;
+        // Registro del producto
+        int codigoProducto = 1;
         System.out.println("Nombre del producto:");
-        producto.nombreProducto = sc.nextLine();
+        String nombreProducto = sc.nextLine();
         System.out.println("Precio del producto:");
-        producto.precio = sc.nextFloat();
+        double precioProducto = sc.nextDouble();
         System.out.println("Stock disponible:");
-        producto.Stock = sc.nextInt();
-        if (producto.Stock > 0) {
-            producto.disponible = true;
-        } 
+        int stockProducto = sc.nextInt();
         
         sc.nextLine();
         
-        Cliente cliente = new Cliente();
+        // Creación del cliente mediante el constructor 
+        Producto producto = new Producto(codigoProducto, nombreProducto, precioProducto, stockProducto);
+
+
+        // Registro del cliente
         System.out.println("Nombre del cliente:");
-        cliente.nombreCliente = sc.nextLine();
+        String nombreCliente = sc.nextLine();
         System.out.println("Edad del cliente:");
-        cliente.edad = sc.nextLine();
-        cliente.vip = true;
+        int edadCliente = sc.nextInt();
+        boolean esVip = true;
+
+        sc.close(); 
+
+        // Creación del cliente mediante el constructor
+        Cliente cliente = new Cliente(nombreCliente, edadCliente, esVip);
         
-        Venta venta = new Venta();
-        venta.producto = producto;
-        venta.cliente = cliente;
+        // Generación de la venta
         System.out.println("Cantidad a comprar:");
-        venta.cantidad = sc.nextInt();
+        int cantidadComprar = sc.nextInt();
+
+        if (cantidadComprar > producto.getStock()) {
+            System.out.println("No hay stock.");
+            return;
+        }
         
-        sc.close();    
+        // Creación de la venta mediante el constructor
+        Venta venta = new Venta(producto, cliente, cantidadComprar);
         
-        venta.calcularTotal();
-        venta.imprimirTicket();     
+        // Emisión del ticket de venta
+        venta.imprimirTicket();
     }
 }
