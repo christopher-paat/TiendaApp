@@ -1,3 +1,14 @@
+/* 
+Errores corregidos:
+- Nomenclatura: Nombre de la clase cambiado de "cliente" a PascalCase "Cliente".
+- Nomenclatura de atributos: "Edad" y "Vip" corregidos a camelCase ("edad", "vip").
+- Selección de tipo de dato: 
+   - "edad" cambió de String a int.
+   - "vip" cambió de char ('S'/'N') a boolean.
+- Encapsulamiento: Atributos cambiados de public a private; se agregaron constructor y métodos de acceso (getters/setters).
+- Variables sin uso: Se eliminó el atributo "telefono" ya que nunca se utilizaba en el sistema.
+*/
+
 public class Cliente {
     private String nombreCliente;
     private int edad;

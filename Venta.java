@@ -1,3 +1,12 @@
+/*
+Errores corregidos:
+- Nomenclatura de clase: "venta" a "Venta".
+- Corrección del alcance static: "contadorVentas" genera el correlativo global.
+- Número mágico eliminado: Se creó la constante IVA = 0.16.
+- Tipado: "total" cambiado de int a double.
+- Encapsulamiento: Atributos privados y métodos de acceso.
+*/
+
 public class Venta {
     public static final double IVA = 0.16; // Constante en lugar de número mágico
     private static int contadorVentas = 0; // Contador global

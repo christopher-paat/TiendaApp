@@ -1,3 +1,12 @@
+/*
+Errores corregidos:
+- Variables sin uso eliminadas: Se removieron variables muertas (x, y, z, PI) que no aportaban a la lógica.
+- Nombres descriptivos: Variables de instancia renombradas (p1 -> producto, c1 -> cliente, v1 -> venta).
+- Encapsulamiento aplicado: En lugar de asignar atributos públicos directamente, se leen los datos y se instancian los objetos mediante sus constructores.
+- Manejo correcto de recursos: Se utiliza sc.close() para el cierre seguro de Scanner.
+- Consumo de saltos de línea: Manejo adecuado del buffer de Scanner tras leer tipos numéricos.
+*/
+
 import java.util.Scanner;
 
 public class TiendaApp {

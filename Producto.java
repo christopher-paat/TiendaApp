@@ -1,3 +1,14 @@
+/*
+Errores corregidos
+- Nomenclatura de clase: "producto" a PascalCase "Producto".
+- Nomenclatura de atributos: "Stock" y "Nombre_Producto" cambiados a camelCase ("stock", "nombreProducto").
+- Atributo static incorrecto: "codigo" era static (compartido por todos los productos); se cambió a atributo de instancia.
+- Tipado adecuado: "precio" cambiado de float a double para mayor precisión monetaria.
+- Tipado booleano: "disponible" cambiado de int (1/0) a boolean.
+- Encapsulamiento: Atributos cambiados a private con getters y setters.
+- Variable sin uso: Se eliminó "Categoria" al no ser utilizada en el sistema.
+*/
+
 public class Producto {
     private int codigo;
     private String nombreProducto;
