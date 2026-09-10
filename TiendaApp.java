@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class TiendaApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
+
         // Registro del producto
         int codigoProducto = 1;
         System.out.println("Nombre del producto:");
@@ -21,12 +21,11 @@ public class TiendaApp {
         double precioProducto = sc.nextDouble();
         System.out.println("Stock disponible:");
         int stockProducto = sc.nextInt();
-        
-        sc.nextLine();
-        
-        // Creación del cliente mediante el constructor 
-        Producto producto = new Producto(codigoProducto, nombreProducto, precioProducto, stockProducto);
 
+        sc.nextLine();
+
+        // Creación del cliente mediante el constructor
+        Producto producto = new Producto(codigoProducto, nombreProducto, precioProducto, stockProducto);
 
         // Registro del cliente
         System.out.println("Nombre del cliente:");
@@ -35,11 +34,11 @@ public class TiendaApp {
         int edadCliente = sc.nextInt();
         boolean esVip = true;
 
-        sc.close(); 
+        sc.nextLine();
 
         // Creación del cliente mediante el constructor
         Cliente cliente = new Cliente(nombreCliente, edadCliente, esVip);
-        
+
         // Generación de la venta
         System.out.println("Cantidad a comprar:");
         int cantidadComprar = sc.nextInt();
@@ -48,11 +47,13 @@ public class TiendaApp {
             System.out.println("No hay stock.");
             return;
         }
-        
+
         // Creación de la venta mediante el constructor
         Venta venta = new Venta(producto, cliente, cantidadComprar);
-        
+
         // Emisión del ticket de venta
         venta.imprimirTicket();
+
+        sc.close(); // Cierre del Scanner para liberar recursos
     }
 }
