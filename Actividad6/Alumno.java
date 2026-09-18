@@ -1,3 +1,5 @@
+package Actividad6;
+
 public class Alumno {
     private String nombre;
     private String apellidoPaterno;

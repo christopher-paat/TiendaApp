@@ -1,3 +1,5 @@
+package Actividad6;
+
 public class Profesor {
     private String nombre;
     private String apellidoPaterno;
